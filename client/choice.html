@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Choose category!</title>
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="choice.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="flex-center flex-column">
+      <h1>Choose Category:</h1>
+      <form>
+        <select id="form-control" name="trivia-category">
+          <option class="opt" value="any" selected="selected">Any Category</option>
+          <option class="opt" value="9">General Knowledge</option>
+          <option class="opt" value="10">Entertainment: Books</option>
+          <option class="opt" value="11">Entertainment: Film</option>
+          <option class="opt" value="12">Entertainment: Music</option>
+          <option class="opt" value="13">Entertainment: Musicals &amp; Theatres</option>
+          <option class="opt" value="14">Entertainment: Television</option>
+          <option class="opt" value="15">Entertainment: Video Games</option>
+          <option class="opt" value="16">Entertainment: Board Games</option>
+          <option class="opt" value="17">Science &amp; Nature</option>
+          <option class="opt" value="18">Science: Computers</option>
+          <option class="opt" value="19">Science: Mathematics</option>
+          <option class="opt" value="20">Mythology</option>
+          <option class="opt" value="21">Sports</option>
+          <option class="opt" value="22">Geography</option>
+          <option class="opt" value="23">History</option>
+          <option class="opt" value="24">Politics</option>
+          <option class="opt" value="25">Art</option>
+          <option class="opt" value="26">Celebrities</option>
+          <option class="opt" value="27">Animals</option>
+          <option class="opt" value="28">Vehicles</option>
+          <option class="opt" value="29">Entertainment: Comics</option>
+          <option class="opt" value="30">Science: Gadgets</option>
+          <option class="opt" value="31">Entertainment: Japanese Anime &amp; Manga</option>
+          <option class="opt" value="32">Entertainment: Cartoon &amp; Animations</option>
+        </select>
+        <button type="button" class="btn" onclick="getOption()">Continue</button>
+      </form>
+      <p hidden class="output"></p>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function getOption() {
+    var selectElment = document.querySelector("#form-control");
+    var categoryChoice = "category=" + selectElment.value;
+    document.querySelector('.output').textContent = categoryChoice;
+    localStorage.setItem("category",categoryChoice);
+    window.location.assign("game.html")
+  }
+  </script>
+</body>
+
+</html>
