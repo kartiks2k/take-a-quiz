@@ -1,12 +1,19 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require('body-parser');
 const ejs = require("ejs");
 const mongoose = require('mongoose');
 const app = express();
 
+let port=process.env.PORT;
+if(port==null || port==""){
+  port=3000;
+};
+
+
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
-mongoose.connect("mongodb://localhost:27017/highscoresDB",{useNewUrlParser:true, useUnifiedTopology: true});
+mongoose.connect(process.env.Mongo_URI,{useNewUrlParser:true, useUnifiedTopology: true});
 
 const highscoreSchema = {
   name : String,
@@ -47,6 +54,6 @@ app.post("/end", (req, res) => {
 });
 
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log("Listening on port 3000");
 });
