@@ -6,7 +6,6 @@ const progressBarFull=document.getElementById("progressBarFull");
 const loader=document.getElementById("loader");
 const game=document.getElementById("game");
 
-
 let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
@@ -26,6 +25,11 @@ if(categoryChoice == '&category=any&') {
 
 console.log(categoryChoice);
 
+function htmlDecode(input) {
+  var doc = new DOMParser().parseFromString(input, "text/html");
+  return doc.documentElement.textContent;
+}
+
 fetch("https://opentdb.com/api.php?amount=10" + categoryChoice + "type=multiple")
   .then( res => {
     return res.json();
@@ -33,12 +37,14 @@ fetch("https://opentdb.com/api.php?amount=10" + categoryChoice + "type=multiple"
   .then( loadedQuestions => {
     questions = loadedQuestions.results.map( loadedQuestion => {
       const formattedQuestion = {
-        question : loadedQuestion.question
+        question : htmlDecode(loadedQuestion.question)
       }
-
-      const answerChoices = [...loadedQuestion.incorrect_answers];
+      var incorrectAnswers = loadedQuestion.incorrect_answers.map( (incorrectAnswer) => {
+        return htmlDecode(incorrectAnswer);
+      })
+      const answerChoices = [...incorrectAnswers];
       formattedQuestion.answer = Math.floor(Math.random()*3) + 1;
-      answerChoices.splice(formattedQuestion.answer -1, 0, loadedQuestion.correct_answer);
+      answerChoices.splice(formattedQuestion.answer -1, 0, htmlDecode(loadedQuestion.correct_answer));
 
       answerChoices.forEach((choice,index) => {
         formattedQuestion["choice" + (index+1)] = choice;

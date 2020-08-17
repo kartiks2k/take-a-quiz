@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/highscores", (req, res) => {
-  Highscore.find({}).sort('-score').exec(function( err, foundScores){
+  Highscore.find({}).sort('-score').limit(5).exec(function( err, foundScores){
       res.render("highscores",{ highScores : foundScores});
   });
 });

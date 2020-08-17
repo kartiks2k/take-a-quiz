@@ -12,3 +12,9 @@
 .high-score:hover{
   transform: scale(1.025);
 }
+
+@media screen and (max-width:460px){
+  #finalScore{
+    font-size: 5.6rem;
+  }
+}
