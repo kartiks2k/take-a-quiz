@@ -91,6 +91,7 @@ h3 {
   color: #56a5eb;
   background-color: white;
   border-radius: 25px;
+  outline: none;
 }
 
 .btn:hover {
@@ -168,6 +169,7 @@ input::placeholder {
     color: #56a5eb;
     background-color: white;
     border-radius: 25px;
+    outline: none;
   }
 
   .logo{
